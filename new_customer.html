@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدخال زبون جديد</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .summary {
+            margin: 20px auto;
+            width: 80%;
+            text-align: left;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>إدخال زبون جديد</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>الفئة</th>
+                <th>الملابس</th>
+                <th>السعر</th>
+                <th>اختيار الخدمة</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>رجالية</td>
+                <td>قميص</td>
+                <td>10 دراهم</td>
+                <td><input type="checkbox" value="10" onchange="addItem(this, 'قميص')"> تصبين</td>
+            </tr>
+            <tr>
+                <td>نسائية</td>
+                <td>فستان</td>
+                <td>20 درهم</td>
+                <td><input type="checkbox" value="20" onchange="addItem(this, 'فستان')"> تصبين</td>
+            </tr>
+            <tr>
+                <td>أطفال</td>
+                <td>تيشيرت</td>
+                <td>5 دراهم</td>
+                <td><input type="checkbox" value="5" onchange="addItem(this, 'تيشيرت')"> تصبين</td>
+            </tr>
+            <tr>
+                <td>أفرشة</td>
+                <td>غطاء</td>
+                <td>30 درهم</td>
+                <td><input type="checkbox" value="30" onchange="addItem(this, 'غطاء')"> تصبين</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="summary">
+        <h3>الملابس المختارة:</h3>
+        <ul id="selectedItems"></ul>
+        <p>المجموع: <span id="totalPrice">0</span> درهم</p>
+    </div>
+
+    <button class="button" onclick="saveData()">حفظ الزبون</button>
+
+    <script>
+        let totalPrice = 0;
+        const selectedItems = [];
+
+        function addItem(checkbox, itemName) {
+            const list = document.getElementById("selectedItems");
+            const totalElement = document.getElementById("totalPrice");
+
+            if (checkbox.checked) {
+                totalPrice += parseInt(checkbox.value);
+                selectedItems.push(itemName);
+            } else {
+                totalPrice -= parseInt(checkbox.value);
+                const index = selectedItems.indexOf(itemName);
+                if (index > -1) selectedItems.splice(index, 1);
+            }
+
+            list.innerHTML = selectedItems.map(item => `<li>${item}</li>`).join("");
+            totalElement.textContent = totalPrice;
+        }
+
+        function saveData() {
+            alert("تم حفظ البيانات بنجاح!");
+            window.location.href = "main.html";
+        }
+    </script>
+</body>
+</html>
