@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مصبنة مشاء الله</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #f7f7f7, #eaeaea);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin-top: 100px;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #4CAF50;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            font-size: 18px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>مرحباً بكم في مصبنة مشاء الله</h1>
+        <p>يرجى إدخال الكود للمتابعة:</p>
+        <input type="password" id="accessCode" placeholder="أدخل الكود هنا">
+        <br>
+        <button onclick="validateCode()">دخول</button>
+        <p id="error" class="error"></p>
+    </div>
+
+    <script>
+        function validateCode() {
+            const code = document.getElementById("accessCode").value;
+            const errorElement = document.getElementById("error");
+
+            if (code === "202501") {
+                window.location.href = "main.html";
+            } else {
+                errorElement.textContent = "الكود غير صحيح. حاول مرة أخرى.";
+            }
+        }
+    </script>
+</body>
+</html>
